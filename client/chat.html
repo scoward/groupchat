@@ -1,0 +1,10 @@
+<template name="chat">
+    <div id="chatbox">
+        {{#each messages}}
+            <pre>{{username}}: {{message}}</pre>
+        {{/each}}
+    </div>
+    <form>
+        <p>Say something: <input id="chatinput" /><input type="submit" value="Post" /></p>
+    </form>
+</template>
