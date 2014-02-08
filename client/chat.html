@@ -12,9 +12,11 @@
             <pre>{{username}}: {{message}}</pre>
         {{/each}}
     </div>
-    <form>
-        <p>Say something: <input id="chatinput" /><input type="submit" value="Post" /></p>
-    </form>
+    {{#if currentUser}}
+        <form>
+            <p>Say something: <input id="chatinput" /><input type="submit" value="Post" /></p>
+        </form>
+    {{/if}}
 </template>
 
 <template name="rooms">
