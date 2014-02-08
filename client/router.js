@@ -24,7 +24,7 @@ GithubController = RouteController.extend({
     data: function() {
         var room = Meteor.metamech.Rooms.findOne(this.chatroom)
             , roomId = room._id
-        var messages = Meteor.metamech.Messages.find({room: roomId}, {sort: {timestamp: -1}, limit: 3})
+        var messages = Meteor.metamech.Messages.find({room: roomId}, {sort: {timestamp: -1}, limit: 20})
         
         return {
             messageList: messages

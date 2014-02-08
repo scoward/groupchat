@@ -1,11 +1,13 @@
 <template name="chatroom">
     <div class="roomScreen">
         <h2>Room {{roomName}}</h2>
-        <ul id="messages">
-            {{#each messages}}
-                <li><span class="author {{authorClass}}">{{author}} [{{timestamp}}]:</span> {{text}}</li>
-            {{/each}}
-        </ul>
+        <div id="messagesContainer">
+            <ul id="messages">
+                {{#each messages}}
+                    <li><span class="author {{authorClass}}">{{author}} [{{timestamp}}]:</span> {{text}}</li>
+                {{/each}}
+            </ul>
+        </div>
         {{#if currentUser}}
             <form>
                 <label for="msg">Message: <input id="msg"></label>

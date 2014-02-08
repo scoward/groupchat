@@ -8,6 +8,10 @@ Template.chatroom.roomName = function() {
     return this.owner + '/' + this.repo
 }
 
+Template.chatroom.rendered = function() {
+    $("#messagesContainer").scrollTop($("#messagesContainer")[0].scrollHeight)
+}
+
 Template.chatroom.events = {
     'click #leave': function() {
         if (!window.confirm("Leave this room?", "Do you really want to leave?")) { return; }
