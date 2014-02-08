@@ -6,10 +6,12 @@
                 <li><span class="author {{authorClass}}">{{author}} [{{timestamp}}]:</span> {{text}}</li>
             {{/each}}
         </ul>
-        <form>
-            <label for="msg">Message: <input id="msg"></label>
-            <button type="submit">&rArr; Send</button>
-            <button type="button" id="leave">Leave</button>
-        </form>
+        {{#if currentUser}}
+            <form>
+                <label for="msg">Message: <input id="msg"></label>
+                <button type="submit">&rArr; Send</button>
+                <button type="button" id="leave">Leave</button>
+            </form>
+        {{/if}}
     </div>
 </template>
