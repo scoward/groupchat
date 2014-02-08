@@ -1,4 +1,12 @@
 <template name="chat">
+    {{#if currentRoom}}
+        {{> room}}
+    {{else}}
+        {{> rooms}}
+    {{/if}}
+</template>
+
+<template name="oldchat">
     <div id="chatbox">
         {{#each messages}}
             <pre>{{username}}: {{message}}</pre>
@@ -7,4 +15,22 @@
     <form>
         <p>Say something: <input id="chatinput" /><input type="submit" value="Post" /></p>
     </form>
+</template>
+
+<template name="rooms">
+    <div class="roomList">
+        <h2>Chat room</h2>
+        <p><button type="button" id="addRoom">Add new room</button></p>
+        <ul>
+            {{#each availableRooms}}
+                {{> roomItem}}
+            {{/each}}
+        </ul>
+    </div>
+</template>
+
+<template name="roomItem">
+    <li class="roomItem">
+        {{name}} <button class="enter">Enter</button> <button class="delete">Delete</button>
+    </li>
 </template>

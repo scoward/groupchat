@@ -1,10 +1,30 @@
-Messages = new Meteor.Collection("messages")
-
-Template.chat.messages = function() {
-    return Messages.find()
+Template.rooms.events = {
+    'click #addRoom': function() {
+        var roomName = window.prompt("Name the room", "My room") || "Anonymous Room";
+        if (roomName) {
+            Meteor.metamech.Rooms.insert({"name": roomName})
+        }
+    }
 }
 
-Template.chat.events = {
+Template.chat.currentRoom = function() {
+    return Session.get('room') || false
+}
+
+Template.rooms.availableRooms = function() {
+    return Meteor.metamech.Rooms.find({})
+}
+
+Template.roomItem.events = {
+    'click .enter': function() {
+        Session.set("room", this._id)
+    },
+    'click .delete': function() {
+        Meteor.metamech.Rooms.remote({_id: this._id})
+    }
+}
+
+Template.oldchat.events = {
     'submit': function(e, tmpl) {
         e.preventDefault();
         console.log("Clicked submit")

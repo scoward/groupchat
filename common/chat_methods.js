@@ -1,20 +1,18 @@
 Meteor.methods({
     addMessage: function(message) {
-        if (message.username == "" ||
-            message.username == null) {
-            throw new Meteor.Error(413, "Missing a user name...")
+        if (message.author == "" ||
+            message.author == null) {
+            throw new Meteor.Error(413, "Message missing author...")
         }
 
-        if (message.message == "") {
-            throw new Meteor.Error(413, "Missing message content...")
+        if (message.text == "") {
+            throw new Meteor.Error(413, "Missing message text...")
         }
         
-        var id = Messages.insert(message)
-
-        var cursor = Messages.find()
-        if (cursor.count() > 20) {
-            var oldestMessage = Messages.findOne()
-            Messages.remove(oldestMessage)
+        if (message.room == "") {
+            throw new Meteor.Error(413, "Message not associated with a room")
         }
+        
+        var id = Meteor.metamech.Messages.insert(message)
     }
 })

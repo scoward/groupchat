@@ -3,10 +3,12 @@
 </head>
 
 <body>
-    {{> header}}
-    <h1>Chat</h1>
-    {{> chat}}
 </body>
+
+<template name="layout">
+    {{> header}}
+    {{yield}}
+</template>
 
 <template name="header">
     <div class="navbar">
