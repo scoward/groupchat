@@ -1,4 +1,5 @@
 Template.chatroom.messages = function() {
+    this.messageList.rewind()
     var messages = this.messageList.fetch()
     return messages.reverse()
 }
