@@ -10,7 +10,12 @@ Meteor.publish('chat', function(params) {
             roomId = room._id
         }
 
-        return Meteor.metamech.Messages.find({room: roomId})
+        // Need to limit the publish or too much data will be sent over the wire.
+        if (params.limit == null) {
+            params.limit = 50
+        }
+
+        return Meteor.metamech.Messages.find({room: roomId}, {sort: {timestamp: -1}, limit: params.limit})
     }
     return []
 })

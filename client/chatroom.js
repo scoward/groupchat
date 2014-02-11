@@ -9,6 +9,11 @@ Template.chatroom.roomName = function() {
 }
 
 Template.chatroom.rendered = function() {
+    // Add show more button if needed
+    if ($("#messages").height() > $("#messagesContainer").height()) {
+        var showMore = $('<button id="showMore" value="Show More">Show More</button>');
+        showMore.prependTo("#messages")
+    }
     $("#messagesContainer").scrollTop($("#messagesContainer")[0].scrollHeight)
 }
 

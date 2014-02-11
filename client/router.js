@@ -14,6 +14,7 @@ GithubController = RouteController.extend({
             type: 'github'
             , owner: this.params.owner
             , repo: this.params.repo
+            , limit: 45
         }
         return [Meteor.subscribe('chat', this.chatroom)
                 , Meteor.subscribe('room', this.chatroom)
@@ -22,9 +23,13 @@ GithubController = RouteController.extend({
     },
 
     data: function() {
-        var room = Meteor.metamech.Rooms.findOne(this.chatroom)
-            , roomId = room._id
-        var messages = Meteor.metamech.Messages.find({room: roomId}, {sort: {timestamp: -1}, limit: 20})
+        var room = Meteor.metamech.Rooms.findOne({
+            type: 'github'
+            , owner: this.params.owner
+            , repo: this.params.repo
+        })
+        var roomId = room._id
+        var messages = Meteor.metamech.Messages.find({room: roomId}, {sort: {timestamp: -1}})
         
         return {
             messageList: messages
