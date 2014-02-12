@@ -19,6 +19,7 @@ GithubController = RouteController.extend({
         }
         return [Meteor.subscribe('chat', this.chatroom)
                 , Meteor.subscribe('room', this.chatroom)
+                , Meteor.subscribe('counts', this.chatroom)
                ]
     },
 

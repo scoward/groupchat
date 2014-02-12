@@ -9,17 +9,25 @@ Template.chatroom.roomName = function() {
 }
 
 Template.chatroom.rendered = function() {
-    // Add show more button if needed
-    if ($("#messages").height() > $("#messagesContainer").height()) {
-        var path = this.data.path + '/' + (parseInt(this.data.limit) + 20)
-        var showMore = $('<a href="' + path + '"><button id="showMore" value="Show More">Show More</button></a>');
-        showMore.prependTo("#messages")
-    }
     if (Session.get('showMore') == true) {
         Session.set('showMore') == false
     } else {
         $("#messagesContainer").scrollTop($("#messagesContainer")[0].scrollHeight)
     }
+}
+
+Template.chatroom.hasMoreMessages = function() {
+    var countObj = Meteor.metamech.Counts.findOne(this.room)
+    if (countObj != null) {
+        if (countObj.count > parseInt(this.limit)) {
+            return true
+        }
+    }
+    return false
+}
+
+Template.chatroom.newLimitUrl = function() {
+    return this.path + '/' + (parseInt(this.limit) + 20)
 }
 
 Template.chatroom.events = {
