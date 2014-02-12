@@ -23,10 +23,6 @@ Template.chatroom.rendered = function() {
 }
 
 Template.chatroom.events = {
-    'click #leave': function() {
-        if (!window.confirm("Leave this room?", "Do you really want to leave?")) { return; }
-        Session.set("room", undefined)
-    },
     'submit': function(e, tmpl) {
         e.preventDefault();
             
