@@ -9,17 +9,17 @@ GithubController = RouteController.extend({
     layoutTemplate: 'layout',
     
     waitOn: function() {
+        var limit = this.params.limit ? this.params.limit : "20"
         // TODO validate input
         this.chatroom = {
             type: 'github'
             , owner: this.params.owner
             , repo: this.params.repo
-            , limit: 45
+            , limit: limit
         }
         return [Meteor.subscribe('chat', this.chatroom)
                 , Meteor.subscribe('room', this.chatroom)
                ]
-               
     },
 
     data: function() {
@@ -28,8 +28,11 @@ GithubController = RouteController.extend({
             , owner: this.params.owner
             , repo: this.params.repo
         })
+        
         var roomId = room._id
-        var messages = Meteor.metamech.Messages.find({room: roomId}, {sort: {timestamp: -1}})
+            , messages = Meteor.metamech.Messages.find({room: roomId}, {sort: {timestamp: -1}})
+            , limit = this.params.limit ? this.params.limit : "20"
+            , path = this.params.limit ? this.path.substring(0, this.path.lastIndexOf('/')) : this.path
         
         return {
             messageList: messages
@@ -37,6 +40,8 @@ GithubController = RouteController.extend({
             , type: 'github'
             , owner: this.params.owner
             , repo: this.params.repo
+            , limit: limit
+            , path: path
         }
     }
 })
@@ -47,7 +52,7 @@ Router.map(function() {
     })
     
     this.route('github', {
-        path: '/github/:owner/:repo'
+        path: '/github/:owner/:repo/:limit?'
         , controller: GithubController
     })
 })

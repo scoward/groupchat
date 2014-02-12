@@ -11,10 +11,15 @@ Template.chatroom.roomName = function() {
 Template.chatroom.rendered = function() {
     // Add show more button if needed
     if ($("#messages").height() > $("#messagesContainer").height()) {
-        var showMore = $('<button id="showMore" value="Show More">Show More</button>');
+        var path = this.data.path + '/' + (parseInt(this.data.limit) + 20)
+        var showMore = $('<a href="' + path + '"><button id="showMore" value="Show More">Show More</button></a>');
         showMore.prependTo("#messages")
     }
-    $("#messagesContainer").scrollTop($("#messagesContainer")[0].scrollHeight)
+    if (Session.get('showMore') == true) {
+        Session.set('showMore') == false
+    } else {
+        $("#messagesContainer").scrollTop($("#messagesContainer")[0].scrollHeight)
+    }
 }
 
 Template.chatroom.events = {
@@ -48,5 +53,8 @@ Template.chatroom.events = {
                     }
                 }
         )
+    },
+    'click #showMore': function () {
+        Session.set('showMore', true)
     }
 }
