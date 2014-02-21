@@ -1,0 +1,34 @@
+<template name="user_info">
+    <ul class="nav pull-right">
+        {{#if currentUser}}
+            {{> user_loggedIn}}
+        {{else}}
+            {{> user_loggedOut}}
+        {{/if}}
+    </ul>
+</template>
+
+<template name="user_loggedIn">
+    {{#if loggingIn}}
+        <li><a>Logging in...</a></li>
+    {{else}}
+        <li>
+            <img class="img-rounded" style="height: 32px; margin-top: 4px;" src="{{currentUser.profile.avatar_url}}"/>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                {{currentUser.profile.login}}
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a>Account Settings</a></li>
+                <li class="divider"></li>
+                <li><a id="logout">Logout</a></li>
+            </ul>
+        </li>
+    {{/if}}
+</template>
+
+<template name="user_loggedOut">
+    <li><a id="login">Login with Github</a></li>
+</template>

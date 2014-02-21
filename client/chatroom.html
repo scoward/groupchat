@@ -1,0 +1,21 @@
+<template name="chatroom">
+    <div class="roomScreen">
+        <h2>Room {{roomName}}</h2>
+        <div id="messagesContainer">
+            {{#if hasMoreMessages}}
+                <a href="{{newLimitUrl}}"><button id="showMore" value="Show More">Show More</button></a>
+            {{/if}}
+            <ul id="messages">
+                {{#each messages}}
+                    <li><span class="author {{authorClass}}">{{author}} [{{timestamp}}]:</span> {{text}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        {{#if currentUser}}
+            <form>
+                <label for="msg">Message: <input id="msg"></label>
+                <button type="submit">&rArr; Send</button>
+            </form>
+        {{/if}}
+    </div>
+</template>

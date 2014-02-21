@@ -1,0 +1,23 @@
+<head>
+    <title>MeteorJS Chat</title>
+</head>
+
+<body>
+</body>
+
+<template name="layout">
+    {{> header}}
+    {{yield}}
+</template>
+
+<template name="header">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="nav pull-right">
+                    {{> user_info}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
