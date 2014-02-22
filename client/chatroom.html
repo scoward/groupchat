@@ -3,7 +3,7 @@
         <h2>Room {{roomName}}</h2>
         <div id="messagesContainer">
             {{#if hasMoreMessages}}
-                <a href="{{newLimitUrl}}"><button id="showMore" value="Show More">Show More</button></a>
+                <button id="showMore" value="Show More">Show More</button>
             {{/if}}
             <ul id="messages">
                 {{#each messages}}
