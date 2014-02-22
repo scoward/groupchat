@@ -40,7 +40,6 @@ GithubController = RouteController.extend({
         var roomId = room._id
             , messages = Meteor.metamech.Messages.find({room: roomId}, {sort: {timestamp: 1}})
         
-        // this needs to be reactive
         return {
             messageList: messages
             , room: roomId
