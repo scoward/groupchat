@@ -64,9 +64,10 @@ Template.chatroom.events = {
         tmpl.find("#msg").value = ""
 
         Meteor.call("addMessage", newMessage,
+                // TODO probably shouldn't show an alert :)
                 function(err, result) {
                     if (err) {
-                        alert("Could not send message", err.reason)
+                        alert("Could not post message", err.reason)
                     }
                 }
         )
