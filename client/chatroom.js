@@ -10,9 +10,9 @@ Template.chatroom.roomName = function() {
 
 Template.chatroom.rendered = function() {
     if (Session.get('showMore') == true) {
-        Session.set('showMore') == false
+        Session.set('showMore', false)
     } else {
-        $("#messagesContainer").scrollTop($("#messagesContainer")[0].scrollHeight)
+        // TODO Scroll to top? Do we need to force the list to move?
     }
 }
 

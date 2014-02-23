@@ -1,21 +1,21 @@
 <template name="chatroom">
-    <div class="email-content">
-        <div class="email-content-header pure-g">
+    <div class="msgContent">
+        <div class="msgContentHeader pure-g">
             <div class="pure-u-1-2">
-                <h1 class="email-content-title">Room {{roomName}}</h1>
-                <p class="email-content-subtitle">
+                <h1 class="msgContentTitle">Room {{roomName}}</h1>
+                <p class="msgContentSubtitle">
                     From <a>Tilo Mitra</a> at <span>3:56pm, April 3, 2012</span>
                 </p>
             </div>
 
-            <div class="email-content-controls pure-u-1-2">
-                <button class="secondary-button pure-button">Reply</button>
-                <button class="secondary-button pure-button">Forward</button>
-                <button class="secondary-button pure-button">Move to</button>
+            <div class="msgContentControls pure-u-1-2">
+                <button class="secondaryButton pure-button">Reply</button>
+                <button class="secondaryButton pure-button">Forward</button>
+                <button class="secondaryButton pure-button">Move to</button>
             </div>
         </div>
 
-        <div class="email-content-body">
+        <div class="msgContentBody">
             {{#if hasMoreMessages}}
             <a href="{{newLimitUrl}}">
                 <button id="showMore" value="Show More">Show More</button>

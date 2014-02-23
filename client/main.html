@@ -13,35 +13,35 @@
 <template name="layout">
     <div id="layout" class="content pure-g">
         <div id="nav" class="pure-u">
-            <a href="#" class="nav-menu-button">Menu</a>
-            <div class="nav-inner">
-                <button class="primary-button pure-button">Compose</button>
+            <a href="#" title="Menu" class="navMenuButton"><i class="fa fa-bars fa-lg"></i></a>
+            <div class="navInner">
+                <button class="primary-button pure-button">Magic</button>
                 <div class="pure-menu pure-menu-open">
                     <ul>
-                        <li><a href="#">Inbox <span class="email-count">(2)</span></a></li>
+                        <li><a href="#">Inbox <span class="msgCount">(2)</span></a></li>
                         <li><a href="#">Important</a></li>
                         <li><a href="#">Sent</a></li>
                         <li><a href="#">Drafts</a></li>
                         <li><a href="#">Trash</a></li>
                         <li class="pure-menu-heading">Labels</li>
-                        <li><a href="#"><span class="email-label-personal"></span>Personal</a></li>
-                        <li><a href="#"><span class="email-label-work"></span>Work</a></li>
-                        <li><a href="#"><span class="email-label-travel"></span>Travel</a></li>
+                        <li><a href="#"><span class="msgLabelPersonal"></span>Personal</a></li>
+                        <li><a href="#"><span class="msgLabelWork"></span>Work</a></li>
+                        <li><a href="#"><span class="msgLabelTravel"></span>Travel</a></li>
                     </ul>
                     {{> user_info}}
                 </div>
             </div>
         </div>
         <div id="list" class="pure-u-1 messages">
-            <div class="email-item pure-g" ng-class="{emailItemSelected: msgs.selectedMessage == message, emailItemUnread: message.unread}" ng-repeat="message in msgs.messages" ng-click="msgs.selectMessage(message)">
+            <div class="msgItem pure-g" ng-class="{emailItemSelected: msgs.selectedMessage == message, emailItemUnread: message.unread}" ng-repeat="message in msgs.messages" ng-click="msgs.selectMessage(message)">
                 <div class="pure-u">
-                    <img class="email-avatar" alt="{{message.author}}&#x27;s avatar" height="64" width="64" ng-src="img/common/{{message.user}}-avatar.png" src=""/>
+                    <img class="msgAvatar" alt="{{message.author}}&#x27;s avatar" height="64" width="64" ng-src="img/common/{{message.user}}-avatar.png" src=""/>
                 </div>
 
                 <div class="pure-u-3-4">
-                    <h5 class="email-name">{{message.author}}</h5>
-                    <h4 class="email-subject">{{message.subject}}</h4>
-                    <p class="email-desc">{{message.summary}}</p>
+                    <h5 class="msgName">{{message.author}}</h5>
+                    <h4 class="msgSubject">{{message.subject}}</h4>
+                    <p class="msgDesc">{{message.summary}}</p>
                 </div>
             </div>
         </div>
@@ -49,15 +49,6 @@
             {{yield}}
         </div>
     </div>
-    {{#if currentUser}}
-    <div id="unibox" class="pure-g">
-        <div class="pure-u-1">
-            <form class="pure-form pure-g">
-                <div class="pure-u-7-8"><input id="msg" type="text" class="pure-input-1" placeholder="Enter message"></div>
-                <div class="pure-u-1-8 tools"><button id="send" type="submit" class="pure-button pure-button-primary">Send</button></div>
-            </form>
-        </div>
-    </div>
-    {{/if}}
+    {{> unibox}}
 </template>
 

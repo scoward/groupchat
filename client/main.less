@@ -53,7 +53,7 @@ a {
   text-align: center;
 }
 /* Show the "Menu" button on phones */
-#nav .nav-menu-button {
+#nav .navMenuButton {
   display: block;
   top: 0.5em;
   right: 0.5em;
@@ -65,12 +65,12 @@ a {
   height: 80%;
 }
 /* Don't show the navigation items... */
-.nav-inner {
+.navInner {
   display: none;
 }
 
 /* ...until the "Menu" button is clicked */
-#nav.active .nav-inner {
+#nav.active .navInner {
   display: block;
   padding: 2em 0;
 }
@@ -104,49 +104,49 @@ a {
  * -- EMAIL STYLES --
  * Styles relevant to the email messages, labels, counts, and more.
  */
-.email-count {
+.msgCount {
   color: rgb(75, 113, 151);
 }
 
-.email-label-personal,
-.email-label-work,
-.email-label-travel {
+.msgLabelPersonal,
+.msgLabelWork,
+.msgLabelTravel {
   width: 15px;
   height: 15px;
   display: inline-block;
   margin-right: 0.5em;
   border-radius: 3px;
 }
-.email-label-personal {
+.msgLabelPersonal {
   background: #ffc94c;
 }
-.email-label-work {
+.msgLabelWork {
   background: #41ccb4;
 }
-.email-label-travel {
+.msgLabelTravel {
   background: #40c365;
 }
 
 
 /* Email Item Styles */
-.email-item {
+.msgItem {
   padding: 0.9em 1em;
   border-bottom: 1px solid #ddd;
   border-left: 6px solid transparent;
 }
-.email-avatar {
+.msgAvatar {
   border-radius: 3px;
   margin-right: 0.5em;
 }
-.email-name,
-.email-subject {
+.msgName,
+.msgSubject {
   margin: 0;
 }
-.email-name {
+.msgName {
   text-transform: uppercase;
   color: #999;
 }
-.email-desc {
+.msgDesc {
   font-size: 80%;
   margin: 0.4em 0;
 }
@@ -158,38 +158,38 @@ a {
 }
 
 /* Email Content Styles */
-.email-content {
+.msgContent {
   padding-bottom: 2em;
 }
 
-.email-content-header, .email-content-body, .email-content-footer {
+.msgContentHeader, .msgContentBody, .msgContentFooter {
   padding: 1em 2em;
 }
 
-.email-content-header {
+.msgContentHeader {
   border-bottom: 1px solid #ddd;
 }
 
-.email-content-title {
+.msgContentTitle {
   margin: 0.5em 0 0;
 }
-.email-content-subtitle {
+.msgContentSubtitle {
   font-size: 1em;
   margin: 0;
   font-weight: normal;
 }
-.email-content-subtitle span {
+.msgContentSubtitle span {
   color: #999;
 }
-.email-content-controls {
+.msgContentControls {
   margin-top: 2em;
   text-align: right;
 }
-.email-content-controls .secondary-button {
+.msgContentControls .secondary-button {
   margin-bottom: 0.3em;
 }
 
-.email-avatar {
+.msgAvatar {
   width: 40px;
   height: 40px;
 }
@@ -222,13 +222,13 @@ a {
   }
 
   /* Show the menu items on the larger screen */
-  .nav-inner {
+  .navInner {
     display: block;
     padding: 2em 0;
   }
 
   /* Hide the "Menu" button on larger screens */
-  #nav .nav-menu-button {
+  #nav .navMenuButton {
     display: none;
   }
 

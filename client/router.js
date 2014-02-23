@@ -57,3 +57,10 @@ Router.map(function() {
         , controller: GithubController
     })
 })
+
+Template.layout.events = {
+    'click .navMenuButton': function(e, tmpl) {
+        $('#nav').toggleClass('active')
+        e.stopImmediatePropagation()
+    }
+}
