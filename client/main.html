@@ -33,17 +33,7 @@
             </div>
         </div>
         <div id="list" class="pure-u-1 messages">
-            <div class="msgItem pure-g" ng-class="{emailItemSelected: msgs.selectedMessage == message, emailItemUnread: message.unread}" ng-repeat="message in msgs.messages" ng-click="msgs.selectMessage(message)">
-                <div class="pure-u">
-                    <img class="msgAvatar" alt="{{message.author}}&#x27;s avatar" height="64" width="64" ng-src="img/common/{{message.user}}-avatar.png" src=""/>
-                </div>
-
-                <div class="pure-u-3-4">
-                    <h5 class="msgName">{{message.author}}</h5>
-                    <h4 class="msgSubject">{{message.subject}}</h4>
-                    <p class="msgDesc">{{message.summary}}</p>
-                </div>
-            </div>
+            {{> feed}}}
         </div>
         <div id="main" class="pure-u-1">
             {{yield}}

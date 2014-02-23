@@ -1,0 +1,15 @@
+<template name="feed">
+    {{#each items}}
+    <div class="msgItem pure-g {{#if selected}}msgSelected{{/if}} {{#if unread}}msgUnread{{/if}}">
+        <div class="pure-u">
+            <img class="msgAvatar" alt="{{author}}&#x27;s avatar" height="64" width="64" ng-src="img/common/{{user}}-avatar.png" src=""/>
+        </div>
+
+        <div class="pure-u-3-4">
+            <h5 class="msgName">{{author}}</h5>
+            <h4 class="msgSubject">{{subject}}</h4>
+            <p class="msgDesc">{{summary}}</p>
+        </div>
+    </div>
+    {{/each}}
+</template>

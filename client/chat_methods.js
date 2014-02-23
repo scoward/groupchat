@@ -12,7 +12,10 @@ Meteor.methods({
         if (message.room == "") {
             throw new Meteor.Error(413, "Message not associated with a room")
         }
-        
-        var id = Meteor.metamech.Messages.insert(message)
+
+        message.status = "pending"
+        message.count = 100000000
+        Meteor.metamech.Messages.insert(message)
+        Meteor.metamech.Rooms.update({_id: message.room}, {$inc: {count: 1}})
     }
 })

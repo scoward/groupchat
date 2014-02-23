@@ -7,19 +7,26 @@ Router.configure({
 GithubController = RouteController.extend({
     template: 'chatroom',
     layoutTemplate: 'layout',
+                 
+    load: function() {
+        Session.set('offset', 20)
+    },
     
     waitOn: function() {
-        var limit = this.params.limit ? this.params.limit : "20"
-        // TODO validate input
+        // TODO validate URL input
         this.chatroom = {
             type: 'github'
             , owner: this.params.owner
             , repo: this.params.repo
-            , limit: limit
+            , offset: Session.get('offset')
         }
-        return [Meteor.subscribe('chat', this.chatroom)
+        // TODO figure out why this can happen
+        if (isNaN(this.chatroom.offset)) {
+            this.chatroom.offset = 20 // default
+        }
+        Meteor.metamech.chatSub = Meteor.subscribe('chat', this.chatroom)
+        return [Meteor.metamech.chatSub
                 , Meteor.subscribe('room', this.chatroom)
-                , Meteor.subscribe('counts', this.chatroom)
                ]
     },
 
@@ -31,9 +38,7 @@ GithubController = RouteController.extend({
         })
         
         var roomId = room._id
-            , messages = Meteor.metamech.Messages.find({room: roomId}, {sort: {timestamp: -1}})
-            , limit = this.params.limit ? this.params.limit : "20"
-            , path = this.params.limit ? this.path.substring(0, this.path.lastIndexOf('/')) : this.path
+            , messages = Meteor.metamech.Messages.find({room: roomId}, {sort: {timestamp: 1}})
         
         return {
             messageList: messages
@@ -41,8 +46,6 @@ GithubController = RouteController.extend({
             , type: 'github'
             , owner: this.params.owner
             , repo: this.params.repo
-            , limit: limit
-            , path: path
         }
     }
 })
@@ -53,7 +56,7 @@ Router.map(function() {
     })
     
     this.route('github', {
-        path: '/github/:owner/:repo/:limit?'
+        path: '/github/:owner/:repo'
         , controller: GithubController
     })
 })

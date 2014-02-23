@@ -1,7 +1,7 @@
 Template.chatroom.messages = function() {
     this.messageList.rewind()
     var messages = this.messageList.fetch()
-    return messages.reverse()
+    return messages
 }
 
 Template.chatroom.roomName = function() {
@@ -9,25 +9,38 @@ Template.chatroom.roomName = function() {
 }
 
 Template.chatroom.rendered = function() {
-    if (Session.get('showMore') == true) {
-        Session.set('showMore', false)
-    } else {
-        // TODO Scroll to top? Do we need to force the list to move?
+    // TODO move this to the router if possible using before/after
+    if (this.handle == null) {
+        var firstrun = true
+        this.handle = Deps.autorun(function() {
+            var offset = Session.get('offset')
+            if (firstrun == false) {
+                Meteor.metamech.chatSub = Meteor.subscribe('chat', 
+                        {type: this.type
+                         , owner: this.owner
+                         , repo: this.repo
+                         , offset: offset
+                        })
+            } else {
+                firstrun = false
+            }
+        })
+    }
+}
+
+Template.chatroom.destroyed = function() {
+    if (this.handle) {
+        this.handle.stop()
+        this.handle = null
     }
 }
 
 Template.chatroom.hasMoreMessages = function() {
-    var countObj = Meteor.metamech.Counts.findOne(this.room)
-    if (countObj != null) {
-        if (countObj.count > parseInt(this.limit)) {
-            return true
-        }
+    var room = Meteor.metamech.Rooms.findOne({_id: this.room})
+    if (room.count > this.messageList.count()) {
+        return true
     }
     return false
-}
-
-Template.chatroom.newLimitUrl = function() {
-    return this.path + '/' + (parseInt(this.limit) + 20)
 }
 
 Template.chatroom.events = {
@@ -51,14 +64,17 @@ Template.chatroom.events = {
         tmpl.find("#msg").value = ""
 
         Meteor.call("addMessage", newMessage,
+                // TODO probably shouldn't show an alert :)
                 function(err, result) {
                     if (err) {
-                        alert("Could not send message", err.reason)
+                        alert("Could not post message", err.reason)
                     }
                 }
         )
     },
-    'click #showMore': function () {
-        Session.set('showMore', true)
+    'click #showMore': function (e) {
+        e.preventDefault()
+        var oldOffset = Session.get('offset')
+        Session.set('offset', oldOffset + 50)
     }
 }
