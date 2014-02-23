@@ -8,7 +8,6 @@ insecure
 preserve-inputs
 accounts-ui
 accounts-github
-bootstrap
 
 iron-router
 less

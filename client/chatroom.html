@@ -1,21 +1,76 @@
 <template name="chatroom">
-    <div class="roomScreen">
-        <h2>Room {{roomName}}</h2>
-        <div id="messagesContainer">
+    <div class="email-content">
+        <div class="email-content-header pure-g">
+            <div class="pure-u-1-2">
+                <h1 class="email-content-title">Room {{roomName}}</h1>
+                <p class="email-content-subtitle">
+                    From <a>Tilo Mitra</a> at <span>3:56pm, April 3, 2012</span>
+                </p>
+            </div>
+
+            <div class="email-content-controls pure-u-1-2">
+                <button class="secondary-button pure-button">Reply</button>
+                <button class="secondary-button pure-button">Forward</button>
+                <button class="secondary-button pure-button">Move to</button>
+            </div>
+        </div>
+
+        <div class="email-content-body">
             {{#if hasMoreMessages}}
-                <a href="{{newLimitUrl}}"><button id="showMore" value="Show More">Show More</button></a>
+            <a href="{{newLimitUrl}}">
+                <button id="showMore" value="Show More">Show More</button>
+            </a>
             {{/if}}
             <ul id="messages">
                 {{#each messages}}
-                    <li><span class="author {{authorClass}}">{{author}} [{{timestamp}}]:</span> {{text}}</li>
+                <li><span class="author {{authorClass}}">{{author}} [{{timestamp}}]:</span> {{text}}</li>
                 {{/each}}
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>A iusto maiores neque ut!</li>
+                <li>Delectus itaque nam quos repudiandae!</li>
+                <li>Est excepturi incidunt odit ratione?</li>
+                <li>Excepturi modi nisi reprehenderit repudiandae.</li>
+                <li>Qui quo, similique! Incidunt, temporibus!</li>
+                <li>Architecto consequatur impedit qui rerum!</li>
+                <li>Culpa eius quasi reiciendis sapiente?</li>
+                <li>Atque ducimus nesciunt quis vitae.</li>
+                <li>A aliquam ipsam sunt unde.</li>
+                <li>Consequatur doloremque ex nam necessitatibus?</li>
+                <li>Architecto culpa dolorem itaque provident!</li>
+                <li>Amet cum dolorem eos fugit!</li>
+                <li>Commodi ducimus labore quae quibusdam.</li>
+                <li>Culpa dicta dolore doloremque non.</li>
+                <li>A assumenda enim perferendis perspiciatis.</li>
+                <li>Aspernatur beatae distinctio libero quia!</li>
+                <li>Alias dignissimos excepturi maiores quia.</li>
+                <li>A dicta itaque nulla praesentium!</li>
+                <li>Alias aut iste maxime voluptatibus!</li>
+                <li>Amet nisi sed sit veritatis!</li>
+                <li>Animi incidunt repudiandae sunt tenetur.</li>
+                <li>Accusantium commodi cupiditate error nobis?</li>
+                <li>Animi dolores doloribus odit vero?</li>
+                <li>Deserunt distinctio iste minus suscipit!</li>
+                <li>Accusamus dolores quibusdam repellat repudiandae.</li>
+                <li>Asperiores explicabo hic iusto officia.</li>
+                <li>Natus repellat tenetur vel voluptas.</li>
+                <li>Obcaecati quaerat quasi quo rerum!</li>
+                <li>Laboriosam nulla odio odit vero?</li>
+                <li>Eos labore modi nostrum quae.</li>
+                <li>Beatae nesciunt temporibus unde voluptates.</li>
+                <li>Ad aperiam consequuntur dolores maiores!</li>
+                <li>Eligendi, illo porro! A, vitae.</li>
+                <li>Deleniti quae quod repellat repellendus.</li>
+                <li>Dolor in modi quidem similique.</li>
+                <li>Assumenda dolor est laboriosam optio.</li>
+                <li>Dignissimos dolore harum iusto maxime?</li>
+                <li>Ad cumque neque quam rem?</li>
+                <li>Adipisci enim inventore modi mollitia!</li>
+                <li>Facere quaerat quibusdam repudiandae similique.</li>
+                <li>At culpa debitis dolorem rerum.</li>
+                <li>Corporis dignissimos labore provident quas?</li>
+                <li>Dicta eveniet fuga officiis voluptate.</li>
+                <li>Natus numquam officiis quod totam!</li>
             </ul>
         </div>
-        {{#if currentUser}}
-            <form>
-                <label for="msg">Message: <input id="msg"></label>
-                <button type="submit">&rArr; Send</button>
-            </form>
-        {{/if}}
     </div>
 </template>
