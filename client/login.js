@@ -7,6 +7,7 @@ Template.user_loggedOut.events({
                 console.log(err)
                 // error handling
             } else {
+                console.log(this.userId)
                 // show alerts
             }
         })
@@ -22,5 +23,20 @@ Template.user_loggedIn.events({
                 // show alerts
             }
         })
+    }
+})
+
+Meteor.metamech.loggedIn = false
+Meteor.metamech.trackingSub = null
+Deps.autorun(function() {
+    if (Meteor.user() == null) {
+        if (Meteor.metamech.loggedIn != false) {
+            Meteor.metamech.trackingSub.stop()
+        }
+    } else {
+        if (Meteor.metamech.loggedIn != true) {
+            Meteor.metamech.trackingSub = Meteor.subscribe('track')
+            // setup other subs like user-rooms or preferences
+        }
     }
 })

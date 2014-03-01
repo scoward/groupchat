@@ -22,3 +22,18 @@ Meteor.publish('chat', function(params) {
 Meteor.publish('room', function(params) {
     return Meteor.metamech.Rooms.find({owner: params.owner, repo: params.repo, type: params.type})
 })
+
+Meteor.publish('track', function() {
+    var userId = this.userId
+    if (this.userId == null) { 
+        this.stop()
+        return
+    }
+    console.log('user connected', {userId: userId})
+    this.ready()
+    this.onStop(function() {
+        console.log('user disconnected', {userId: userId})
+        // TODO do something with this data, it's quite useful
+        // e.g. update room lists
+    })
+})

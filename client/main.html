@@ -12,26 +12,7 @@
 
 <template name="layout">
     <div id="layout" class="content pure-g">
-        <div id="nav" class="pure-u">
-            <a href="#" title="Menu" class="navMenuButton"><i class="fa fa-bars fa-lg"></i></a>
-            <div class="navInner">
-                <button class="primary-button pure-button">Magic</button>
-                <div class="pure-menu pure-menu-open">
-                    <ul>
-                        <li><a href="#">Inbox <span class="msgCount">(2)</span></a></li>
-                        <li><a href="#">Important</a></li>
-                        <li><a href="#">Sent</a></li>
-                        <li><a href="#">Drafts</a></li>
-                        <li><a href="#">Trash</a></li>
-                        <li class="pure-menu-heading">Labels</li>
-                        <li><a href="#"><span class="msgLabelPersonal"></span>Personal</a></li>
-                        <li><a href="#"><span class="msgLabelWork"></span>Work</a></li>
-                        <li><a href="#"><span class="msgLabelTravel"></span>Travel</a></li>
-                    </ul>
-                    {{> user_info}}
-                </div>
-            </div>
-        </div>
+        {{> nav}}
         <div id="list" class="pure-u-1 messages">
             {{> feed}}}
         </div>
@@ -40,5 +21,9 @@
         </div>
     </div>
     {{> unibox}}
+    {{> dialogs}}
 </template>
 
+<template name="dialogs">
+    {{> addRoomDialog}}
+</template>

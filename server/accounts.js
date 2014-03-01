@@ -1,9 +1,9 @@
-Accounts.loginServiceConfiguration.remove({
+ServiceConfiguration.configurations.remove({
     // not entirely sure why this is removed
     service: "github"
 })
 
-Accounts.loginServiceConfiguration.insert({
+ServiceConfiguration.configurations.insert({
     service: "github"
     , clientId: "48525e16b115b5f2ed4a"
     , secret: "e7a784500a427dff8723d67b60aae048e63b1f4b"
